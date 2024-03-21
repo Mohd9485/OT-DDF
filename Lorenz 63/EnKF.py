@@ -4,7 +4,7 @@
 """
 import numpy as np
 import time
-def EnKF(X,Y,X0,A,h,t,tau,Noise,Odeint):
+def EnKF(X,Y,X0,A,h,t,tau,Noise):
     AVG_SIM = X.shape[0]
     N = X.shape[1]
     L = X.shape[2]
