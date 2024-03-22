@@ -22,10 +22,9 @@ for $t=1,2,\dots$ where $X_t\in \mathbb{R}^2,~ Y_t \in \mathbb{R},~ V_t$ and $W_
 
 $$
 \begin{aligned}
-    h(x)=x,\quad h(x)=x \odot x,\quad h(x)=x \odot x \odot x
+    h(X_t)=X_t(1), \quad  h(X_t)=X_t(1)^2
 \end{aligned}
 $$
-
 
 where $X_t(1)$ is the first component of the vector $X_t$. We refer to these observation models as linear and quadratic, respectively.
 
