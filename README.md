@@ -34,10 +34,13 @@ for $t=1,2,\dots$ where $X_t\in \mathbb R^2$, $Y_t \in \mathbb R$, $\{V_t\}_{t=1
 where $X_t(1)$ is the first component of the vector $X_t$. We refer to these observation models as linear and quadratic, respectively.
 
 <p align="center">
-<img src="/images/X.png" width="250" height="250"><img src="/images/XX.png" width="250" height="250"><img src="/images/XXX.png" width="250" height="250">
+<img src="/images/X.png" width="250" height="250">
 </p>
 <p align="center">
-<img src="/images/mse_X.png" width="250" height="250"><img src="/images/mse_XX.png" width="250" height="250"><img src="/images/mse_XXX.png" width="250" height="250">
+<img src="/images/XX.png" width="250" height="250">
+</p>
+<p align="center">
+<img src="/images/L63.png" width="250" height="250">
 </p>
 
 Please take a look at the paper for more details on this example. Also, please consider citing our paper if you find this repository useful for your publication.
