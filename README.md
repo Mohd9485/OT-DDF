@@ -25,7 +25,7 @@ for $t=1,2,\dots$ where $X_t\in \mathbb R^2$, $Y_t \in \mathbb R$, $\{V_t\}_{t=1
 where $X_t(1)$ is the first component of the vector $X_t$. We refer to these observation models as linear and quadratic, respectively.
 
 <p align="center">
-<img src="/images/X.png" width="250" height="250">
+<img src="/images/X.png" width="1000" height="300">
 </p>
 <p align="center">
 <img src="/images/XX.png" width="250" height="250">
