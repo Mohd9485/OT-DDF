@@ -38,6 +38,10 @@ Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$:
 <img src="/images/XX.png" width="1000" height="300">
 </p>
 
+\\
+\\
+\\
+
 ## Lorenz 63
 
 \begin{aligned}
