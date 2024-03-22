@@ -3,16 +3,7 @@
 This repository is by Mohammad Al-Jarrah, [Bamdad Hosseini](https://bamdadhosseini.org/), [Amirhossein Taghvaei](https://www.aa.washington.edu/facultyfinder/amir-taghvaei) and contains the Pytorch source code to reproduce the experiments in our 2024 paper [Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps](add link). 
 
 To illustrate the proposed OT-DDF algorithm in comparison with three other filters: the Ensemble Kalman Filter (EnKF),
-Optimal transport particle filter (OTPF), and the sequential importance resampling (SIR) PF, we are using the following model:
-
-$$
-\begin{aligned}
-    X_{t} &= (1-\alpha) X_{t-1} + 2\sigma V_t,\quad X_0 \sim \mathcal{N}(0,I_n)\\
-    Y_t &= h(X_t) + \sigma W_t
-\end{aligned}
-$$
-
-for $t=1,2,3,\ldots$, where $X_t,Y_t \in \mathbb R^n,~ V_t, ~W_t ~\forall t=1,...,\infty$ are i.i.d sequences of $n$-dimensional standard Gaussian random variables, $\alpha=0.1$ and $\sigma=\sqrt{0.1}$. We use two examples examples:
+Optimal transport particle filter (OTPF), and the sequential importance resampling (SIR) PF, we use the following two examples:
 
 ## Linear dynamics with linear and quadratic observation models
 $$
