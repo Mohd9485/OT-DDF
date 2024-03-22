@@ -2,11 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import time as Time
-
 import matplotlib
 import sys
 from SIR import SIR
-from KF import KF
 from EnKF import EnKF
 
 plt.close('all')
@@ -63,7 +61,6 @@ tau = 1e-1 # timpe step
 
 
 X0 = X_OTPF[:,0,:,:]
-X_KF = KF(Y_true,X0.mean(axis=2,keepdims=True),F,H,time,tau,Noise)
 X_SIR  = SIR(X_true,Y_true,X0,A,h,time,tau,Noise)
 X_EnKF = EnKF(X_true,Y_true,X0,A,h,time,tau,Noise)
 
