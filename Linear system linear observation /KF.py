@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Tue Feb 13 11:23:44 2024
 
-@author: jarrah
+@author: Mohammad Al-Jarrah
+Ph.D. student, University of Washington - Seattle
+email: mohd9485@uw.edu 
+
 """
 
 import numpy as np

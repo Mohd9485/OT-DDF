@@ -1,3 +1,11 @@
+"""
+
+@author: Mohammad Al-Jarrah
+Ph.D. student, University of Washington - Seattle
+email: mohd9485@uw.edu 
+
+"""
+
 import numpy as np
 import time
 def SIR(X,Y,X0,A,h,t,tau,Noise):
