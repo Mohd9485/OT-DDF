@@ -29,9 +29,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
     LearningRate = parameters['LearningRate']
     ITERATION = parameters['ITERATION']
     Final_Number_ITERATION = parameters['Final_Number_ITERATION']
-# =============================================================================
-#     Time_step = parameters['Time_step']
-# =============================================================================
     
     #device = torch.device('mps' if torch.has_mps else 'cpu') # M1 Chip
     device = torch.device('cpu')
@@ -73,44 +70,13 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
                 self.layer12 = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
                 self.layer21 = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
                 self.layer22 = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
-                
-                self.layer31 = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
-                self.layer32 = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
-                
+ 
                 self.layerout = nn.Linear(self.hidden_dim, input_dim[0], bias=False)
                 
-# =============================================================================
-#                 self.A = torch.nn.Parameter(torch.randn(self.input_dim[0],self.input_dim[0]))
-#                 self.m_hat = torch.nn.Parameter(torch.randn(self.input_dim[0]))
-#                 self.o_hat = torch.nn.Parameter(torch.randn(self.input_dim[1]))
-#                 self.K = torch.nn.Parameter(torch.randn(self.input_dim[1],self.input_dim[0]))
-#                 
-#                 self.gain = torch.nn.Parameter(torch.randn(1))
-# =============================================================================
+
                 
-                self.dist = MultivariateNormal(torch.zeros(self.input_dim[1]),gamma*gamma * torch.eye(self.input_dim[1]))
             # Input is of size
             def forward(self, x, y):
-# =============================================================================
-#                 # EnKF settings
-#                 eta = self.dist.sample((x.shape[0],))
-#                 
-#                 m_hat = x.T.mean(axis=1)
-#                 o_hat = (h(x.T)).mean(axis=1)
-#                 a = (x - m_hat)
-#                 b = (h(x.T).T - o_hat)
-#                 C_hat_vh = (a.T@b)/x.shape[0]
-#                 C_hat_hh = (b.T@b)/x.shape[0]
-#                 K = C_hat_vh @ torch.linalg.inv(C_hat_hh + torch.eye(self.input_dim[1])*gamma*gamma)
-#                 x = x + (K@ (y - h(x.T).T - eta).T).T 
-#                 #x = x.to(torch.float32)
-#                 
-#                 #x = self.m_hat + (x - self.m_hat)@self.A + torch.matmul( y - self.o_hat,self.K)
-# =============================================================================
-                
-# =============================================================================
-#                 return x
-# =============================================================================
 
                 X = self.layer_input(torch.concat((x,y),dim=1))
                 
@@ -125,28 +91,11 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
                 xy = self.activationReLu(xy)
                 xy = self.layer22 (xy)
                 
-# =============================================================================
-#                 xy = self.activationReLu(xy)+X
-#                 
-#                 
-#                 xy = self.layer31(xy)
-#                 xy = self.activationReLu(xy)
-#                 xy = self.layer32 (xy)
-# =============================================================================
                 
                 xy = self.layerout(self.activationReLu(xy)+X)#+x
-# =============================================================================
-#                 xy = self.layerout(self.activationReLu(xy))+x
-# =============================================================================
+
                 return xy
-                
-# =============================================================================
-#                 return 10*nn.Tanh()(xy)
-# =============================================================================
-            
-# =============================================================================
-#                 return self.gain*nn.Tanh()(xy)
-# =============================================================================
+
     
         
     def init_weights(m):
@@ -191,11 +140,7 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             for j in range(inner_iterations):
                 map_T = T.forward(X_ref,Y_shuffled)
                 f_of_map_T= f.forward(map_T,Y_shuffled) 
-                #grad_f_of_map_T = torch.autograd.grad(f_of_map_T.sum(),map_T,create_graph=True)[0]
                 loss_T = - f_of_map_T.mean() + 0.5*((X_train-map_T)*(X_train-map_T)).sum(axis=1).mean()
-# =============================================================================
-#                 loss_T = f_of_map_T.mean() - (X_train*map_T).sum(axis=1).mean()
-# =============================================================================
                 optimizer_T.zero_grad()
                 loss_T.backward()
                 optimizer_T.step()
@@ -204,9 +149,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             map_T = T.forward(X_ref,Y_shuffled)
             f_of_map_T= f.forward(map_T,Y_shuffled) 
             loss_f = -f_of_xy.mean() + f_of_map_T.mean()
-# =============================================================================
-#             loss_f =f_of_xy.mean() - f_of_map_T.mean()
-# =============================================================================
             optimizer_f.zero_grad()
             loss_f.backward()
             optimizer_f.step()
@@ -217,17 +159,9 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
                     f_of_map_T = f.forward(map_T,Y_Train_shuffled) 
                     loss_f = f_of_xy.mean() - f_of_map_T.mean()
                     loss = f_of_xy.mean() - f_of_map_T.mean() + ((X_Train-map_T)*(X_Train-map_T)).sum(axis=1).mean()
-    # =============================================================================
-    #                 f.layer.weight = torch.nn.parameter.Parameter(nn.functional.relu(f.layer.weight))
-    # =============================================================================
-                    
-                    #print(g.W.data)
+
                     print("Simu#%d/%d ,Time Step:%d/%d, Iteration: %d/%d, loss = %.4f" %(k+1,K,ts,Ts-1,i+1,iterations,loss.item()))
 
-# =============================================================================
-#             if  (i+1)==iterations or i%1000==0:
-#                 print("Simu#%d/%d ,Time Step:%d/%d, Iteration: %d/%d" %(k+1,K,ts,Ts-1,i+1,iterations))          
-# =============================================================================
             scheduler_f.step()
             scheduler_T.step()
             
@@ -269,13 +203,7 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
     #
     start_time = time.time()
     SAVE_all_X_OT = np.zeros((AVG_SIM,N,SAMPLE_SIZE,L))
-    # =============================================================================
-    # SAVE_True_X_OT = np.zeros((AVG_SIM,N,L))
-    # SAVE_True_Y_OT = np.zeros((AVG_SIM,N,dy))
-    # =============================================================================
-# =============================================================================
-#     mse_OT = np.zeros((N,AVG_SIM))
-# =============================================================================
+
     
     for k in range(AVG_SIM):
         
@@ -297,50 +225,12 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
            
             sai = np.random.multivariate_normal(np.zeros(L),sigmma*sigmma * np.eye(L),SAMPLE_SIZE)
             X1 = ((A(X0.T,t[i]).T))  + sai
-            
-# =============================================================================
-#             X_all = np.concatenate((X_all,X1),axis=1)
-# =============================================================================
-            
-# =============================================================================
-#             eta = np.random.multivariate_normal(np.zeros(dy),gamma*gamma * np.eye(dy),SAMPLE_SIZE)
-# # =============================================================================
-# #             Y1 = h(X1.T).reshape(SAMPLE_SIZE,dy) + eta_train
-# # =============================================================================
-#             Y1 = np.array(h(X1.T).T + eta)
-# =============================================================================
-# =============================================================================
-#             print( h(X1.T))
-# =============================================================================
-
-# =============================================================================
-#             if i==0:
-#                 Y_all = Y1
-#             else:    
-#                 Y_all = np.concatenate((Y_all,Y1),axis=1)
-#                 
-#             Y_all = torch.from_numpy(Y_all)
-#             Y_all = Y_all.to(torch.float32)
-# =============================================================================
-            
-# =============================================================================
-#             X1_train = torch.from_numpy(X1)
-#             X1_train = X1_train.to(torch.float32)
-#             Y1_train = torch.from_numpy(Y1)
-#             Y1_train = Y1_train.to(torch.float32)
-#             X1_train = X1_train.to(device)
-#             Y1_train = Y1_train.to(device)
-# =============================================================================
-            
-            
+ 
             if i == skip - window-1:
                 X_ref = X1
                 X_ref = torch.from_numpy(X_ref)
                 X_ref = X_ref.to(torch.float32).to(device)
-            
-# =============================================================================
-#             if i == INPUT_DIM[1]/dy:
-# =============================================================================
+
             if i == skip-1: 
                 for j in range(skip-1):
                     train_sample = SAMPLE_SIZE*100
@@ -409,8 +299,5 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             
 
     SAVE_all_X_OT = SAVE_all_X_OT.transpose((0,1,3,2))       
-# =============================================================================
-#     MSE_OT =  mse_OT.mean(axis=1)
-# =============================================================================
     print("--- OT time : %s seconds ---" % (time.time() - start_time))
-    return SAVE_all_X_OT#,MSE_OT 
+    return SAVE_all_X_OT
