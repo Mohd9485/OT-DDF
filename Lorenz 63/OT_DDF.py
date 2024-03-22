@@ -1,7 +1,3 @@
-"""
-@author: Mohammad Al-Jarrah
-"""
-
 import numpy as np
 import time
 import torch
@@ -31,9 +27,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
     LearningRate = parameters['LearningRate']
     ITERATION = parameters['ITERATION']
     Final_Number_ITERATION = parameters['Final_Number_ITERATION']
-# =============================================================================
-#     Time_step = parameters['Time_step']
-# =============================================================================
     
     #device = torch.device('mps' if torch.has_mps else 'cpu') # M1 Chip
     device = torch.device('cpu')
@@ -55,13 +48,7 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
         # Input is of size
         def forward(self, x,y):
             h = self.layer_input(torch.concat((x,y),dim=1))
-            
             h_temp = self.layer_1(self.activationReLu(h)) 
-            
-# =============================================================================
-#             h_temp = self.layer_2(self.activationReLu(h_temp) + h) 
-# =============================================================================
-            
             z = self.layer_out(self.activationReLu(h_temp) + h)  #+ 0.01*(x*x).sum(dim=1)
             return z
         
@@ -95,10 +82,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
                 xy = self.layer12 (xy)
                 
                 xy = self.activationReLu(xy)+X
-# =============================================================================
-#                 xy = xy+X
-#                 xy = self.activationReLu(xy)
-# =============================================================================
                 
                 xy = self.layer21(xy)
                 xy = self.activationReLu(xy)
@@ -106,9 +89,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
 
                 
                 xy = self.layerout(self.activationReLu(xy)+X)
-# =============================================================================
-#                 xy = self.layerout(self.activationReLu(xy))+x
-# =============================================================================
                 return xy
     
         
@@ -160,9 +140,6 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             map_T = T.forward(X_ref,Y_shuffled)
             f_of_map_T= f.forward(map_T,Y_shuffled) 
             loss_f = -f_of_xy.mean() + f_of_map_T.mean()
-# =============================================================================
-#             loss_f =f_of_xy.mean() - f_of_map_T.mean()
-# =============================================================================
             optimizer_f.zero_grad()
             loss_f.backward()
             optimizer_f.step()
@@ -173,9 +150,7 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
                     f_of_map_T = f.forward(map_T,Y_Train_shuffled) 
                     loss_f = f_of_xy.mean() - f_of_map_T.mean()
                     loss = f_of_xy.mean() - f_of_map_T.mean() + ((X_Train-map_T)*(X_Train-map_T)).sum(axis=1).mean()
-    # =============================================================================
-    #                 f.layer.weight = torch.nn.parameter.Parameter(nn.functional.relu(f.layer.weight))
-    # =============================================================================
+
                     
                     #print(g.W.data)
                     print("Simu#%d/%d ,Time Step:%d/%d, Iteration: %d/%d, loss = %.4f" %(k+1,K,ts,Ts-1,i+1,iterations,loss.item()))
@@ -341,5 +316,5 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             
     SAVE_all_X_OT = SAVE_all_X_OT.transpose((0,1,3,2))       
     MSE_OT =  mse_OT.mean(axis=1)
-    print("--- OT time : %s seconds ---" % (time.time() - start_time))
+    print("--- OT-DDF time : %s seconds ---" % (time.time() - start_time))
     return SAVE_all_X_OT,MSE_OT 

@@ -1,6 +1,3 @@
-"""
-@author: Mohammad Al-Jarrah
-"""
 import numpy as np
 import time
 import torch
@@ -84,22 +81,13 @@ def OTPF(X,Y,X0_const,parameters,A,h,t,tau,Noise):
                 xy = self.layer12 (xy)
                 
                 xy = self.activationReLu(xy)+X
-# =============================================================================
-#                 xy = xy+X
-#                 xy = self.activationReLu(xy)
-# =============================================================================
                 
                 xy = self.layer21(xy)
                 xy = self.activationReLu(xy)
                 xy = self.layer22 (xy)
                 xy = self.layerout(self.activationReLu(xy)+X)
-# =============================================================================
-#                 xy = self.layerout(self.activationReLu(xy))+x
-# =============================================================================
+
                 return xy
-# =============================================================================
-#                 return 50*nn.Tanh()(xy)
-# =============================================================================
     
         
     def init_weights(m):
@@ -148,9 +136,6 @@ def OTPF(X,Y,X0_const,parameters,A,h,t,tau,Noise):
             map_T = T.forward(X_train,Y_shuffled)
             f_of_map_T= f.forward(map_T,Y_shuffled) 
             loss_f = -f_of_xy.mean() + f_of_map_T.mean()
-# =============================================================================
-#             loss_f =f_of_xy.mean() - f_of_map_T.mean()
-# =============================================================================
             optimizer_f.zero_grad()
             loss_f.backward()
             optimizer_f.step()
@@ -161,9 +146,7 @@ def OTPF(X,Y,X0_const,parameters,A,h,t,tau,Noise):
                                 f_of_map_T = f.forward(map_T,Y_Train_shuffled) 
                                 loss_f = f_of_xy.mean() - f_of_map_T.mean()
                                 loss = f_of_xy.mean() - f_of_map_T.mean() + ((X_Train-map_T)*(X_Train-map_T)).sum(axis=1).mean()
-                # =============================================================================
-                #                 f.layer.weight = torch.nn.parameter.Parameter(nn.functional.relu(f.layer.weight))
-                # =============================================================================
+
                                 
                                 #print(g.W.data)
                                 print("Simu#%d/%d ,Time Step:%d/%d, Iteration: %d/%d, loss = %.4f" %(k+1,K,ts,Ts-1,i+1,iterations,loss.item()))
@@ -287,5 +270,5 @@ def OTPF(X,Y,X0_const,parameters,A,h,t,tau,Noise):
             
     SAVE_all_X_OT = SAVE_all_X_OT.transpose((0,1,3,2))       
     MSE_OT =  mse_OT.mean(axis=1)
-    print("--- OT time : %s seconds ---" % (time.time() - start_time))
+    print("--- OTPF time : %s seconds ---" % (time.time() - start_time))
     return SAVE_all_X_OT,MSE_OT 

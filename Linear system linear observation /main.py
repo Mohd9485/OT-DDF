@@ -68,7 +68,7 @@ x0_amp = 1#/noise # Amplifiying the initial state
 Noise = [noise,sigmma,sigmma0,gamma,x0_amp]
 
 J = int(1e3) # Number of ensembles EnKF
-AVG_SIM = 2 # Number of Simulations to average over
+AVG_SIM = 1 # Number of Simulations to average over
 
 # OT networks parameters
 parameters = {}
@@ -78,7 +78,7 @@ parameters['NUM_NEURON'] =  int(32*2) #64
 parameters['SAMPLE_SIZE'] = int(J) 
 parameters['BATCH_SIZE'] = int(64*1) #128
 parameters['LearningRate'] = 1e-2/10
-parameters['ITERATION'] = int(1024/1024) 
+parameters['ITERATION'] = int(1024/1) 
 parameters['Final_Number_ITERATION'] = int(64/1) #int(64) #ITERATION 
 parameters['Time_step'] = N
 
@@ -110,7 +110,7 @@ X_OT_DDF_dic = {}
 for window in Window:
     print('Window : ' + window.astype('str'))
     parameters['INPUT_DIM'] = [L,dy*window]
-    parameters['ITERATION'] = int(1*12) 
+    parameters['ITERATION'] = int(1000*12) 
     SAVE_X_OT_DDF  = OT_DDF(SAVE_True_X,SAVE_True_Y,X0,parameters,A,h,t,tau,Noise,window,burn_in)
 
     X_OT_DDF_dic[window.astype('str')] = SAVE_X_OT_DDF
