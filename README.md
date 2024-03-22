@@ -39,6 +39,25 @@ where $X_t(1)$ is the first component of the vector $X_t$. We refer to these obs
 <p align="center">
 <img src="/images/XX.png" width="250" height="250">
 </p>
+
+## Lorenz 63
+
+\begin{aligned}
+\begin{bmatrix}
+    \dot{X}(1) \\ \dot{X}(2) \\ \dot{X}(3)
+\end{bmatrix}
+&= 
+\begin{bmatrix}
+    \sigma (X(2) - X(1)) \\
+    X(1) (\rho - X(3)) - X(2) \\
+    X(1)X(2) - \beta X(3)   
+\end{bmatrix},\quad X_0 \sim \mathcal{N}(\mu_0,\sigma_0^2I_3),
+\\
+Y_t &= X_t(1) + \sigma_{obs}W_t,
+\end{aligned}
+
+where \([X(1),X(2),X(3)]^\top\) are the variables representing the hidden states of the system, and \(\sigma\), \(\rho\), and \(\beta\) are the model parameters. We choose \(\sigma=10\), \(\rho=28\), \(\beta=8/3\), $\mu_0 = [25,25,25]^\top$, and $\sigma_{0}^2=10$. The observed noise $W$ is a $2$-dimensional standard Gaussian random variable with $\sigma_{obs}^2=10$.
+
 <p align="center">
 <img src="/images/L63.png" width="250" height="250">
 </p>
