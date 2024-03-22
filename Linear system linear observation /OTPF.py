@@ -273,5 +273,5 @@ def OTPF(X,Y,X0_const,parameters,A,h,t,tau,Noise):
 
     SAVE_all_X_OT = SAVE_all_X_OT.transpose((0,1,3,2))       
 
-    print("--- OT time : %s seconds ---" % (time.time() - start_time))
+    print("--- OTPF time : %s seconds ---" % (time.time() - start_time))
     return SAVE_all_X_OT
