@@ -42,7 +42,9 @@ Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$:
 $$
 \begin{aligned}
 \begin{bmatrix}
-    \dot{X}(1) \\ \dot{X}(2) \\ \dot{X}(3)
+    \dot{X}(1) \\ 
+    \dot{X}(2) \\
+    \dot{X}(3)
 \end{bmatrix}
 &= 
 \begin{bmatrix}
