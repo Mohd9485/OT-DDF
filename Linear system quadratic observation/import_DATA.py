@@ -170,6 +170,15 @@ mmd_OT_DDF_avg = []
 for window in Window:
     mmd_OT_DDF_avg.append(np.mean(mmd_OT_DDF[window.astype('str')][100:]))
 #%%
+
+X = X*std+mean
+X_EnKF = X_EnKF*std+mean
+X_SIR = X_SIR*std+mean
+X_OTPF = X_OTPF*std+mean
+
+for window in Window:
+    X_OT_DDF_dic[window.astype('str')] = X_OT_DDF_dic[window.astype('str')]*std+mean
+    
 X_EnKF = np.array(X_EnKF)
 X_SIR = np.array(X_SIR)
 X_OTPF = np.array(X_OTPF)
