@@ -39,9 +39,9 @@ Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$:
 </p>
 
 $
-\\
-\\
-\\
+\newline
+\newline
+\newline
 $
 ## Lorenz 63
 
