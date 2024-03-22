@@ -38,11 +38,6 @@ Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$:
 <img src="/images/XX.png" width="1000" height="300">
 </p>
 
-$
-\newline
-\newline
-\newline
-$
 ## Lorenz 63
 
 \begin{aligned}
@@ -54,9 +49,7 @@ $
     \sigma (X(2) - X(1)) \\
     X(1) (\rho - X(3)) - X(2) \\
     X(1)X(2) - \beta X(3)   
-\end{bmatrix},\quad X_0 \sim \mathcal{N}(\mu_0,\sigma_0^2I_3),
-\\
-Y_t &= X_t(1) + \sigma_{obs}W_t,
+\end{bmatrix}
 \end{aligned}
 
 where \([X(1),X(2),X(3)]^\top\) are the variables representing the hidden states of the system, and \(\sigma\), \(\rho\), and \(\beta\) are the model parameters. We choose \(\sigma=10\), \(\rho=28\), \(\beta=8/3\), $\mu_0 = [25,25,25]^\top$, and $\sigma_{0}^2=10$. The observed noise $W$ is a $2$-dimensional standard Gaussian random variable with $\sigma_{obs}^2=10$.
