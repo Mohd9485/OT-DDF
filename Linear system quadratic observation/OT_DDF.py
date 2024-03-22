@@ -299,5 +299,5 @@ def OT_DDF(X,Y,X0_const,parameters,A,h,t,tau,Noise,window,skip):
             
 
     SAVE_all_X_OT = SAVE_all_X_OT.transpose((0,1,3,2))       
-    print("--- OT time : %s seconds ---" % (time.time() - start_time))
+    print("--- OT_DDF time : %s seconds ---" % (time.time() - start_time))
     return SAVE_all_X_OT
