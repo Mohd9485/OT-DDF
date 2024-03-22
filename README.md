@@ -28,9 +28,12 @@ $$
 
 where $X_t(1)$ is the first component of the vector $X_t$. We refer to these observation models as linear and quadratic, respectively.
 
+The following figure is related to the linear observation model $h(X_t)=X_t(1)$:
 <p align="center">
 <img src="/images/X.png" width="1000" height="300">
 </p>
+
+Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$:
 <p align="center">
 <img src="/images/XX.png" width="1000" height="300">
 </p>
