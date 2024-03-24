@@ -6,6 +6,7 @@ To illustrate the proposed OT-DDF algorithm in comparison with three other filte
 Optimal transport particle filter (OTPF), and the sequential importance resampling (SIR) PF, we use the following two examples:
 
 ## Linear dynamics with linear and quadratic observation models
+Consider
 $$
 \begin{aligned}
         X_{t} &= \begin{bmatrix}
@@ -33,7 +34,7 @@ The following figure is related to the linear observation model $h(X_t)=X_t(1)$,
 <img src="/images/X.png" width="1000" height="300">
 </p>
 
-Next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$, where the right figures are averaged over 10 independent simulations:
+The next figure is related to the quadratic observation model $h(X_t)=X_t(1)^2$, where the right figures are averaged over 10 independent simulations:
 <p align="center">
 <img src="/images/XX.png" width="1000" height="300">
 </p>
@@ -75,11 +76,7 @@ add citation
 * PyTorch
 
 ## Running the code and Regenerating data and figures.
-1. Run the 'main.py' file to regenerate and save the date. There are multiple things you can change in the code:
-  - The observation function 'h(x)', please use the desired observation function here.
-  - The number of simulations 'AVG_SIM', we used 100 simulations in our paper, but you can change that to a smaller number to get faster results.
-  - The number final number of iterations 'parameters['Final_Number_ITERATION']'.
-  - Other parameters to choose from like the noise level, the number of particles 'J',..., etc.
+1. Run the 'main.py' file to regenerate and save the date. The number of independent simulations 'AVG_SIM' is set to 1 but in the figures above we set it to 50,10,10 for the three figures, respectively. 
 2. Use the file 'import_DATA.py' to import and plot all the desired figures.
 
 Note: Unfortunately, we ran a random seed every time we ran the code, so we do not have a seed function to provide identical results to our paper, but the figure should be close enough.
