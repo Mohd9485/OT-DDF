@@ -7,6 +7,7 @@ Optimal transport particle filter (OTPF), and the sequential importance resampli
 
 ## Linear dynamics with linear and quadratic observation models
 Consider
+
 $$
 \begin{aligned}
         X_{t} &= \begin{bmatrix}
