@@ -30,7 +30,7 @@ $$
 
 where $X_t(1)$ is the first component of the vector $X_t$. We refer to these observation models as linear and quadratic, respectively.
 
-The following figure is related to the linear observation model $h(X_t)=X_t(1)$, where the right figures are averaged over 50 independent simulations::
+The following figure is related to the linear observation model $h(X_t)=X_t(1)$, where the right figures are averaged over 50 independent simulations:
 <p align="center">
 <img src="/images/X.png" width="1000" height="300">
 </p>
@@ -59,7 +59,7 @@ Y_t &= X_t(1) + \sigma_{obs}W_t,
 \end{aligned}
 $$
 
-where \([X(1),X(2),X(3)]^\top\) are the variables representing the hidden states of the system, and $\sigma$, $\rho$, and $\beta$ are the model parameters. We choose $\sigma=10$, $\rho=28$, $\beta=8/3$, $\mu_0 = [0,0,0]^\top$, and $\sigma_{0}^2=10$. The observed noise $W$ is a $1$-dimensional standard Gaussian random variable with $\sigma_{obs}^2=10$.
+where $[X(1),X(2),X(3)]^\top$ are the variables representing the hidden states of the system, and $\sigma$, $\rho$, and $\beta$ are the model parameters. We choose $\sigma=10$, $\rho=28$, $\beta=8/3$, $\mu_0 = [0,0,0]^\top$, and $\sigma_{0}^2=10$. The observed noise $W$ is a $1$-dimensional standard Gaussian random variable with $\sigma_{obs}^2=10$.
 
 The following figure is related to the Lorenz 63 example, where the right figures are averaged over 10 independent simulations:
 <p align="center">
