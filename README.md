@@ -69,7 +69,12 @@ The following figure is related to the Lorenz 63 example, where the right figure
 Please take a look at the paper for more details on this example. Also, please consider citing our paper if you find this repository useful for your publication.
 
 ```
-Al-Jarrah, M., Hosseini, B. and Taghvaei, A., 2024. Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps. arXiv preprint arXiv:2403.15630.
+@article{al2024data,
+  title={Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps},
+  author={Al-Jarrah, Mohammad and Hosseini, Bamdad and Taghvaei, Amirhossein},
+  journal={arXiv preprint arXiv:2403.15630},
+  year={2024}
+}
 ```
 
 ## Setup
