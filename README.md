@@ -1,6 +1,6 @@
 # Optimal Transport Data-Driven Filters (OT-DDF)
 
-This repository is by Mohammad Al-Jarrah, [Bamdad Hosseini](https://bamdadhosseini.org/), [Amirhossein Taghvaei](https://www.aa.washington.edu/facultyfinder/amir-taghvaei) and contains the Pytorch source code to reproduce the experiments in our 2024 paper [Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps](add link). 
+This repository is by Mohammad Al-Jarrah, [Bamdad Hosseini](https://bamdadhosseini.org/), [Amirhossein Taghvaei](https://www.aa.washington.edu/facultyfinder/amir-taghvaei) and contains the Pytorch source code to reproduce the experiments in our 2024 paper [Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps](https://arxiv.org/abs/2403.15630). 
 
 To illustrate the proposed OT-DDF algorithm in comparison with three other filters: the Ensemble Kalman Filter (EnKF),
 Optimal transport particle filter (OTPF), and the sequential importance resampling (SIR) PF, we use the following two examples:
@@ -69,7 +69,7 @@ The following figure is related to the Lorenz 63 example, where the right figure
 Please take a look at the paper for more details on this example. Also, please consider citing our paper if you find this repository useful for your publication.
 
 ```
-add citation
+Al-Jarrah, M., Hosseini, B. and Taghvaei, A., 2024. Data-Driven Approximation of Stationary Nonlinear Filters with Optimal Transport Maps. arXiv preprint arXiv:2403.15630.
 ```
 
 ## Setup
