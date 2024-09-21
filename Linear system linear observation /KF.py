@@ -35,7 +35,7 @@ def KF(Y,X0,A,H,t,tau,Noise):
 
         
         SAVE_X_KF[k,0,:,:] = X0[k,] 
-        # EnKF & 3DVAR
+        # KF
         for i in range(N):
             # Gain
             K = P0 @ H.T @ np.linalg.inv(H @ P0 @ H.T + R) 
