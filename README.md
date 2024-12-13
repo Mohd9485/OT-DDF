@@ -66,6 +66,13 @@ The following figure is related to the Lorenz 63 example, where the right figure
 <img src="/images/L63.png" width="1000" height="300">
 </p>
 
+<video controls width="600">
+  <source src="images/lorenz_particles_OTDDF.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+
 Please take a look at the paper for more details on this example. Also, please consider citing our paper if you find this repository useful for your publication.
 
 ```
